@@ -28,7 +28,7 @@
 |24|[이루리](#team-24)| 대학(원)생의 생활비 부담 완화를 위한 소비습관 개선 및 장학/복지 정보 추천 어플리케이션
 |25|[return 0;](#team-25)| 위치 기반 서비스(LBS)와 챗봇(GPT)기반 상담 기능을 활용하여 반려인에게 맞춤형 여행 정보를 제공하는 반려동물 동반 여행 애플리케이션
 |26|[TriAI](#team-26)| 지진파형–GNSS 멀티모달 딥러닝을 통한 PGV 추정 및 공간 진도 시각화
-|27|[Matcha Tonic](#team-27)| ProMate: 초보팀의 PM 부재로 발생하는 의사결정 지연 및 프로젝트 진행 보조를 위한 프로젝트 표준 운영 절차가 담긴 노션 워크스페이스를 원클릭으로 배포하여 기획부터 실행까지의 워크플로우를 자동화하는 AI PM 서비스
+|27|[Matcha Tonic](#team-27)| ProMate: 조율자 부재로 의사결정과 협업 관리에 어려움을 겪는 초보 대학생 팀 프로젝트를 위한 AI 기반 단계별 의사결정 및 역할별 업무 가이드 지원 서비스
 |28|[PlanIT](#team-28)| COCO : 탄소 배출의 금전적 시각화와 AI 예측으로 <br>개인과 중소기업의 ESG 관리 장벽을 낮추는 맞춤형 탄소 관리 SaaS 
 |29|[Nitro](#team-29)| Optimized Kernel Fusion for Accelerating Multimodal Inference on Edge Devices
 |30|[LGTM](#team-30)| 대학생을 위한 팀매칭 플랫폼
