@@ -30,7 +30,7 @@
 |26|[TriAI](#team-26)| 멀티모달 딥러닝 기반 지진 PGV 추정 및 위험지도 시각화
 |27|[Matcha Tonic](#team-27)| ProMate: 조율자 부재로 의사결정과 협업 관리에 어려움을 겪는 초보 대학생 팀 프로젝트를 위한 AI 기반 단계별 의사결정 및 역할별 업무 가이드 지원 서비스
 |28|[PlanIT](#team-28)| COCO : 탄소배출량의 금전적 시각화와 AI 시뮬레이션으로 개인·중소기업의 탄소 중립과 ESG 관리를 지원하는 서비스 
-|29|[Nitro](#team-29)| Optimized Kernel Fusion for Accelerating Multimodal Inference on Edge Devices
+|29|[Nitro](#team-29)| Accelerating Vision Transformer Inference via Non-GEMM Kernel Fusion on Edge GPUs
 |30|[LGTM](#team-30)| UniON: 팀빌딩에 어려움을 겪는 대학생을 위한, 공고와 포트폴리오를 AI로 분석·비교해 적합한 팀원을 추천하는 팀매칭 웹서비스
 |31|[플랜B](#team-31)| 고기능 자폐(HFA) 아동/청소년의 사회성 향상을 도와주는 기능성 게임
 |32|[All Day Project](#team-32)| SINGCHRONIZE: 사용자의 음성 특징 벡터 분석을 통한 데이터 기반 개인 맞춤형 가창 곡 추천 시스템 
@@ -467,14 +467,14 @@
 [Return TOP](#list-of-teamsprojects)
  
 # Team-29
-| (1) 과제명 |  Optimized Kernel Fusion for Accelerating Multimodal Inference on Edge Devices |
+| (1) 과제명 |  Accelerating Vision Transformer Inference via Non-GEMM Kernel Fusion on Edge GPUs |
 |:---  |---  |
 | (2) 팀 번호/이름 | 29-Nitro |
-| (3) 구성원 | 강선화(2376004): 리더, Multimodal Model 구조 분석 및 프로파일링, Kernel Fusion 구현, 성능 비교 실험 진행, 팀 주차별 계획 및 회의록 관리 <br> 박세진(2217011): 팀원, 프로젝트 전체 연구 방향 설계, Multimodal Model 구조 분석 및 프로파일링, Kernel Fusion 구현, 성능 비교 실험 진행 <br> 박윤형(2271029): 팀원, Multimodal Model 구조 분석 및 프로파일링, Kernel Fusion 구현, 성능 비교 실험 진행, 문서 정리 |
+| (3) 구성원 | 강선화(2376004): 리더, Multimodal Model 구조 분석 및 프로파일링, Kernel Fusion 구현, 성능 비교 실험 진행 <br> 박세진(2217011): 팀원, 프로젝트 전체 연구 방향 설계, Multimodal Model 구조 분석 및 프로파일링, Kernel Fusion 구현, 성능 비교 실험 진행  <br> 박윤형(2271029): 팀원, Multimodal Model 구조 분석 및 프로파일링, Kernel Fusion 구현, 성능 비교 실험 진행 |
 | (4) 지도교수 | 윤명국 교수 |
 | (5) 트랙  | 연구 |
 | (6) 과제 키워드 | NVIDIA Jetson, Multimodal, CUTLASS, Kernel Fusion, Embedded GPU Optimization |
-| (7) 과제 내용 요약 | **[프로젝트 소개]** <br/> Jetson Nano와 같은 임베디드 GPU 환경에서 실행되는 멀티모달 모델의 추론 과정 중 발생하는 GPU kernel-level 병목을 분석하고 이를 Kernel Fusion 및 실행 구조 최적화를 통해 GPU utilization을 향상시키는 시스템을 구축한다.<br/><br/> **[고객]** <br/> 멀티모달 모델의 inference 성능 최적화에 관심 있는 연구자 및 GPU 기반 AI 시스템 개발자<br/><br/> **[문제 정의]** <br/> 최근 멀티모달 대형 모델(LMM)의 규모와 토큰 수 증가로 인해 행렬 연산(GEMM)의 비중이 커지고 있으나, 자원이 제한된 엣지 디바이스에서는 커널 호출 오버헤드와 메모리 대역폭 제약으로 인해 실행 효율이 저하된다. 특히 Transformer 구조 내 다수의 독립적인 커널 실행과 QKV 분할·변환 등 메모리 집약적인 연산이 성능 병목을 유발하고 있다. <br/> 본 연구에서는 커널 구조 재구성을 통해 연산 효율을 높이고 메모리 트래픽을 최소화하여 이러한 병목 현상을 해결하고자 한다. <br/><br/> **[Pain Point]** <br/> 멀티모달 모델의 크기와 연산량이 빠르게 증가하면서, Jetson과 같은 엣지 디바이스에서 실시간 추론을 수행하는 것이 점점 어려워지고 있다. 특히 엣지 환경은 서버급 GPU에 비해 연산 자원과 메모리 대역폭이 제한적이기 때문에, kernel launch overhead, 불필요한 DRAM access, 낮은 GPU utilization과 같은 비효율이 더욱 크게 성능 병목으로 이어진다. 이러한 문제는 end-to-end latency를 증가시켜 실시간 서비스 구현을 어렵게 만든다. <br/> TensorRT와 같은 기존 최적화 프레임워크는 효과적인 범용 커널 퓨전을 제공하지만, general-purpose 방식이기 때문에 멀티모달 모델 구조에서 발생하는 추가적인 fusion opportunity를 충분히 활용하지 못하는 한계가 있다. <br/> 따라서 엣지 디바이스에 적합한 멀티모달 모델 최적화를 위해, profiling 기반으로 fusion 가능한 커널을 체계적으로 분석하고 최적의 커널 퓨전 조합을 찾는 연구가 필요하다. <br/><br/> **[Solution]** <br/> 본 연구는 CUTLASS를 활용하여 Transformer 블록 내 연산들을 하나로 통합하는 커널 퓨전(Kernel Fusion) 솔루션을 제안한다. <br/> 첫째로, QKV 프로젝션 GEMM의 출력 단계에서 데이터 분할 및 전치 연산을 동시에 처리하여 메모리 병목을 제거한다. 둘째로, GEMM 이후의 Residual, Bias, Activation, LayerNorm을 에필로그 단계에 통합함으로써 불필요한 전역 메모리 접근과 커널 호출 오버헤드를 최소화한다. <br/> 이를 통해 특히 자원이 제한된 엣지 디바이스 환경에서 멀티모달 모델의 추론 속도를 효율적으로 개선한다.|
+| (7) 과제 내용 요약 | **[프로젝트 소개]** <br/> 엣지 GPU 환경에서 Vision Transformer 기반 멀티모달 모델을 추론할 때 발생하는 GPU kernel-level 병목을 분석하고, 비-GEMM 연산을 GEMM 인접 실행 경로에 흡수하는 Kernel Fusion 기법을 통해 추론 지연시간을 줄이는 시스템 최적화 연구이다.<br/><br/> **[타겟 사용자]** <br/>엣지 GPU 환경에서 멀티모달 Transformer 모델의 inference 성능 최적화에 관심 있는 연구자, GPU 기반 AI 시스템 개발자, Vision-Language Model을 제한된 하드웨어 자원에서 실시간으로 실행하고자 하는 임베디드 AI 개발자<br/><br/> **[문제 정의]** <br/> 최근 멀티모달 모델은 Vision Transformer 기반 구조를 활용하며, 모델 규모와 visual token 수 증가로 인해 연산량과 메모리 요구량이 크게 증가하고 있다. 그러나 엣지 GPU는 서버급 GPU에 비해 연산 자원과 메모리 대역폭이 제한적이어서, Transformer 추론 시 kernel launch overhead와 DRAM access가 latency 증가의 주요 원인이 된다. 특히 QKV Split&Transpose, LayerNorm, Bias/Residual Add와 같은 비-GEMM 연산은 계산량은 작지만 별도 CUDA kernel로 실행되며 반복적인 메모리 접근을 유발한다. TensorRT와 CUTLASS는 일부 연산 패턴에 대해 최적화를 제공하지만, 이러한 비-GEMM 커널 병목을 모두 제거하기에는 한계가 있다. 따라서 본 연구는 엣지 GPU 환경에서 발생하는 비-GEMM 커널의 launch overhead와 DRAM access를 주요 병목으로 정의하고, 이를 Kernel Fusion으로 줄이고자 한다. <br/><br/> **[Solution]** <br/> 본 연구는 CUTLASS를 활용하여 Transformer 블록 내 연산들을 하나로 통합하는 커널 퓨전(Kernel Fusion) 솔루션을 제안한다. <br/> 첫째로, QKV 프로젝션 GEMM의 출력 단계에서 데이터 분할 및 전치 연산을 동시에 처리하여 메모리 병목을 제거한다. 둘째로, Bias/Residual Add와 LayerNorm 연산을 앞뒤 GEMM의 Epilogue 및 Mainloop 단계에 분산 통합함으로써, 거대한 중간 활성화 텐서의 DRAM 전역 메모리 접근을 최소화한다. <br/> 이를 통해 특히 자원이 제한된 엣지 디바이스 환경에서 멀티모달 모델의 추론 속도를 효율적으로 개선한다.|
 | (8) 주요 Link | https://github.com/Nitro-Ewha/Multimodal_on_Jetson |
  
 <br>
